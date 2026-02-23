@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>環球滋味在上海 — In-Flight Magazine</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+TC:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C5A258;
+    --gold-light: #E8D5A3;
+    --dark: #1A1A1A;
+    --deep: #0D0D0D;
+    --cream: #F7F3EC;
+    --warm-white: #FDFBF7;
+    --text: #2C2C2C;
+    --text-light: #6B6B6B;
+    --burgundy: #6B2D3E;
+    --navy: #1B2A4A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--text);
+    font-family: 'Noto Serif TC', 'Georgia', serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ====== COVER SECTION ====== */
+  .cover {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .cover-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      url('https://images.unsplash.com/photo-1545893835-abaa50cbe628?w=1800&q=80') center/cover no-repeat;
+    filter: brightness(0.45) saturate(1.1);
+    transform: scale(1.05);
+    animation: coverZoom 20s ease-out forwards;
+  }
+
+  @keyframes coverZoom {
+    to { transform: scale(1); }
+  }
+
+  .cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(10,10,10,0.95) 0%,
+      rgba(10,10,10,0.5) 35%,
+      rgba(10,10,10,0.1) 60%,
+      transparent 100%
+    );
+  }
+
+  .cover-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 2rem 8vh;
+    max-width: 800px;
+    animation: fadeUp 1.2s ease-out 0.3s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .magazine-tag {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 6px 20px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 1.2s ease-out 0.6s both;
+  }
+
+  .cover-title {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 900;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    color: #fff;
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    margin-bottom: 1.2rem;
+  }
+
+  .cover-title .accent {
+    color: var(--gold);
+  }
+
+  .cover-subtitle {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: rgba(255,255,255,0.7);
+    line-height: 1.8;
+    letter-spacing: 0.06em;
+    animation: fadeUp 1.2s ease-out 0.9s both;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    animation: pulse 2s ease-in-out infinite 2s;
+  }
+
+  .scroll-hint span {
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    margin: 0 auto;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* ====== PAGE BODY ====== */
+  .page-body {
+    background: var(--warm-white);
+    position: relative;
+  }
+
+  /* ====== INTRO SECTION ====== */
+  .intro-section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+  }
+
+  .section-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .intro-section .byline {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    letter-spacing: 0.15em;
+    margin-bottom: 2.5rem;
+  }
+
+  .intro-section .byline::before,
+  .intro-section .byline::after {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+    vertical-align: middle;
+    margin: 0 12px;
+  }
+
+  .drop-cap-para {
+    font-size: 1.1rem;
+    line-height: 2;
+    color: var(--text);
+    text-align: justify;
+  }
+
+  .drop-cap-para::first-letter {
+    float: left;
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 900;
+    font-size: 4.5rem;
+    line-height: 0.8;
+    padding: 0.08em 0.12em 0 0;
+    color: var(--burgundy);
+  }
+
+  .body-text {
+    font-size: 1.05rem;
+    line-height: 2;
+    color: var(--text);
+    text-align: justify;
+    margin-top: 1.5rem;
+  }
+
+  /* ====== STAT BAR ====== */
+  .stat-bar {
+    background: var(--navy);
+    padding: 3rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    text-align: center;
+    min-width: 160px;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-unit {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5);
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  /* ====== FEATURE IMAGE SECTIONS ====== */
+  .feature-img-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+  }
+
+  .feature-img-section.reverse { direction: rtl; }
+  .feature-img-section.reverse > * { direction: ltr; }
+
+  .feature-img {
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+  }
+
+  .feature-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 8s ease-out;
+  }
+
+  .feature-img:hover img {
+    transform: scale(1.04);
+  }
+
+  .feature-img .img-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 1.5rem 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.08em;
+  }
+
+  .feature-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3.5rem;
+    background: var(--warm-white);
+  }
+
+  .feature-text.dark-bg {
+    background: var(--dark);
+  }
+
+  .feature-text.dark-bg .feature-heading,
+  .feature-text.dark-bg .feature-body,
+  .feature-text.dark-bg .feature-quote {
+    color: rgba(255,255,255,0.9);
+  }
+
+  .feature-text.dark-bg .feature-quote-author {
+    color: rgba(255,255,255,0.5);
+  }
+
+  .feature-heading {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+  }
+
+  .feature-body {
+    font-size: 1rem;
+    line-height: 2;
+    color: var(--text);
+    text-align: justify;
+  }
+
+  .feature-quote {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: var(--text);
+    margin-top: 1.5rem;
+    padding-left: 1.2rem;
+    border-left: 2px solid var(--gold);
+    font-style: italic;
+  }
+
+  .feature-quote-author {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-top: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ====== PULLQUOTE ====== */
+  .pullquote-section {
+    background: var(--cream);
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .pullquote-section::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: var(--gold-light);
+    position: absolute;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1;
+  }
+
+  .pullquote-text {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 600;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    color: var(--navy);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pullquote-attr {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 1.5rem;
+    letter-spacing: 0.15em;
+  }
+
+  /* ====== SEASONAL TIMELINE ====== */
+  .seasons-section {
+    background: var(--dark);
+    padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .seasons-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(197,162,88,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(27,42,74,0.3) 0%, transparent 60%);
+  }
+
+  .seasons-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    position: relative;
+  }
+
+  .seasons-header h2 {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.04em;
+  }
+
+  .seasons-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* The connecting line */
+  .seasons-timeline::before {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), var(--gold), transparent);
+    opacity: 0.3;
+  }
+
+  .seasons-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .season-item {
+    padding: 0 1.2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  /* Gold dot on the timeline */
+  .season-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin: 0 auto 1.8rem;
+    position: relative;
+    box-shadow: 0 0 12px rgba(197,162,88,0.4);
+  }
+
+  .season-quarter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  .season-name {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.9);
+    display: block;
+    margin-bottom: 0.9rem;
+    letter-spacing: 0.02em;
+  }
+
+  .season-desc {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.78rem;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.02em;
+  }
+
+  /* ====== ROUTES / INFO SECTION ====== */
+  .info-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--dark);
+    color: white;
+    min-height: 500px;
+  }
+
+  .info-image {
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+  }
+
+  .info-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+  }
+
+  .info-content {
+    padding: 4rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .info-content h2 {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  .info-content p {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 1.2rem;
+    text-align: justify;
+  }
+
+  /* ====== DATA HIGHLIGHT ====== */
+  .data-section {
+    background: linear-gradient(135deg, var(--navy), #2A1A3E);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 800px;
+    margin: 2rem auto 0;
+  }
+
+  .data-item .data-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .data-item .data-label {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 0.4rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ====== CLOSING ====== */
+  .closing-section {
+    padding: 5rem 2rem;
+    background: var(--warm-white);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .closing-section .body-text:last-of-type {
+    margin-bottom: 2rem;
+  }
+
+  .closing-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin: 2rem auto;
+  }
+
+  .closing-credits {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.75rem;
+    color: var(--text-light);
+    text-align: center;
+    letter-spacing: 0.08em;
+    line-height: 2;
+  }
+
+  /* ====== FOOTER ====== */
+  .magazine-footer {
+    background: var(--deep);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(197,162,88,0.2);
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-note {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.1em;
+  }
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 900px) {
+    .feature-img-section,
+    .info-section {
+      grid-template-columns: 1fr;
+    }
+    .feature-img-section.reverse { direction: ltr; }
+    .seasons-row {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .seasons-timeline::before { display: none; }
+    .data-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .feature-text {
+      padding: 3rem 2rem;
+    }
+    .info-content {
+      padding: 3rem 2rem;
+    }
+    .stat-bar {
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .seasons-row {
+      grid-template-columns: 1fr 1fr;
+    }
+    .stat-bar {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+  }
+
+  /* ====== PRINT STYLES ====== */
+  @media print {
+    .cover { height: auto; min-height: auto; page-break-after: always; }
+    .cover-bg { filter: brightness(0.5); }
+    body { background: white; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== COVER ====== -->
+<section class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-overlay"></div>
+  <div class="cover-content">
+    <div class="magazine-tag">Shanghai · Culinary · Culture</div>
+    <h1 class="cover-title">
+      美食盛宴<br>
+      <span class="accent">見證一座城市的蛻變</span>
+    </h1>
+    <p class="cover-subtitle">
+      「環球滋味在上海」年度美食節啟幕<br>以味蕾連結世界，以餐桌書寫城市
+    </p>
+  </div>
+  <div class="scroll-hint"><span></span></div>
+</section>
+
+<!-- ====== PAGE BODY ====== -->
+<div class="page-body">
+
+  <!-- INTRO -->
+  <section class="intro-section">
+    <span class="section-number">Feature Story</span>
+    <div class="byline">鄭錚　報道</div>
+    <p class="drop-cap-para">
+      中西交融，向來是上海餐桌上最動人的風景。今年年初，上海正式啟動了一場為期一年的國際美食慶典——「環球滋味在上海」，志在將這座城市打造為全球首屈一指的美食之都。
+    </p>
+    <p class="body-text">
+      活動於一月揭幕，旨在向世界展示上海豐富多元的國際餐飲面貌：各國風味的碰撞交匯，文化與味覺的深度對話。目前，全市坐擁近萬家餐廳，菜式涵蓋五大洲43個國家和地區。
+    </p>
+  </section>
+
+  <!-- STAT BAR -->
+  <div class="stat-bar">
+    <div class="stat-item">
+      <div class="stat-number">~10,000</div>
+      <span class="stat-unit">國際餐廳</span>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">43</div>
+      <span class="stat-unit">國家及地區菜系</span>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">5</div>
+      <span class="stat-unit">大洲風味匯聚</span>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">338</div>
+      <span class="stat-unit">精選歐洲餐廳</span>
+    </div>
+  </div>
+
+  <!-- PULLQUOTE - Shen -->
+  <section class="pullquote-section">
+    <p class="pullquote-text">
+      環球美食不僅承載城市文化，更是一種跨越國界、直抵人心的國際交流語言。
+    </p>
+    <p class="pullquote-attr">—— 沈衛華，上海市商務委員會黨組書記</p>
+  </section>
+
+  <!-- FEATURE 1: Italian -->
+  <section class="feature-img-section">
+    <div class="feature-img">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80" alt="Fine dining">
+      <div class="img-caption">上海高端意大利餐飲一景</div>
+    </div>
+    <div class="feature-text">
+      <span class="section-number">意大利風味</span>
+      <h2 class="feature-heading">從華爾街到廚房<br>一位美籍華人的上海餐飲夢</h2>
+      <p class="feature-body">
+        美籍華人John Liu是意大利餐廳Scarpetta Trattoria的創辦人，2003年以金融從業者的身份來到上海，後來決定投身餐飲，選擇了與中菜有諸多共通之處的意大利菜。
+      </p>
+      <div class="feature-quote">
+        「大約14年前剛開業時，高水準的國際餐廳還不多見，客人以外籍人士為主。如今，八至九成客人都是本地食客，口味和偏好的轉變可謂翻天覆地。」
+      </div>
+      <div class="feature-quote-author">—— John Liu，Scarpetta Trattoria 創辦人</div>
+    </div>
+  </section>
+
+  <!-- FEATURE 2: Innovation -->
+  <section class="feature-img-section reverse">
+    <div class="feature-img">
+      <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=80" alt="Pizza">
+      <div class="img-caption">融合本地口味的拿坡里薄餅</div>
+    </div>
+    <div class="feature-text dark-bg">
+      <span class="section-number">融合與創新</span>
+      <h2 class="feature-heading">廚房裏的東西對話</h2>
+      <p class="feature-body">
+        這種轉變激發了廚房裏的創新。在Scarpetta Trattoria，Liu研發了拿坡里薄餅等招牌菜式，逐步調整以迎合本地味蕾。
+      </p>
+      <div class="feature-quote">
+        「我們正見證一股令人着迷的融合趨勢。西餐廳如今也開始向中餐取經，尤其是從各地搜羅頂級食材的本領。」
+      </div>
+      <div class="feature-quote-author">—— John Liu</div>
+    </div>
+  </section>
+
+  <!-- FEATURE 3: Spanish -->
+  <section class="feature-img-section">
+    <div class="feature-img">
+      <img src="https://images.unsplash.com/photo-1515443961218-a51367888e4b?w=900&q=80" alt="Spanish tapas">
+      <div class="img-caption">正宗西班牙 Tapas 體驗</div>
+    </div>
+    <div class="feature-text">
+      <span class="section-number">西班牙風情</span>
+      <h2 class="feature-heading">由海鮮飯到巴斯克<br>上海食客的西班牙進階之旅</h2>
+      <p class="feature-body">
+        西班牙餐廳Tomatito的聯合創辦人Alberto Fernandez觀察到：「2008年我們開設第一間西班牙餐廳El Willy時，上海人對西班牙菜的認識大多停留在海鮮飯和Tapas小食。如今，食客展現出更深層的好奇心——他們對巴斯克、加泰隆尼亞等不同地區菜系的差異愈發感興趣。」
+      </p>
+      <p class="feature-body" style="margin-top:1rem;">
+        他的太太兼餐廳聯合創辦人閻曉燕補充，餐廳的成功促使他們成立了一家食品進口公司，將正宗的西班牙食材引入上海。
+      </p>
+    </div>
+  </section>
+
+  <!-- PULLQUOTE - Mediterranean -->
+  <section class="pullquote-section">
+    <p class="pullquote-text">
+      大家對菜式背後的地中海生活方式日漸欣賞——講求平衡、新鮮與享樂，與不少本地客人的價值觀不謀而合。
+    </p>
+    <p class="pullquote-attr">—— Alberto Fernandez，Tomatito 聯合創辦人</p>
+  </section>
+
+  <!-- SEASONS -->
+  <section class="seasons-section">
+    <div class="seasons-header">
+      <span class="section-number" style="color:var(--gold-light);">四季主題</span>
+      <h2>一年四季，環球滋味不間斷</h2>
+    </div>
+    <div class="seasons-timeline">
+      <div class="seasons-row">
+        <div class="season-item">
+          <div class="season-dot"></div>
+          <span class="season-quarter">Q1 · Jan — Mar</span>
+          <span class="season-name">歐洲風味</span>
+          <div class="season-desc">意大利美食美酒嘉年華<br>希臘美食市集<br>西班牙火腿品鑑大師班</div>
+        </div>
+        <div class="season-item">
+          <div class="season-dot"></div>
+          <span class="season-quarter">Q2 · Apr — Jun</span>
+          <span class="season-name">美洲風情</span>
+          <div class="season-desc">南北美洲特色料理<br>熱情奔放的拉丁滋味</div>
+        </div>
+        <div class="season-item">
+          <div class="season-dot"></div>
+          <span class="season-quarter">Q3 · Jul — Sep</span>
+          <span class="season-name">亞洲滋味</span>
+          <div class="season-desc">亞洲各國風味巡禮<br>東南亞至東北亞的味覺旅程</div>
+        </div>
+        <div class="season-item">
+          <div class="season-dot"></div>
+          <span class="season-quarter">Q4 · Oct — Dec</span>
+          <span class="season-name">創意融合</span>
+          <div class="season-desc">跨界創新料理<br>顛覆想像的味覺實驗</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROUTES + CITY -->
+  <section class="info-section">
+    <div class="info-image">
+      <img src="https://images.unsplash.com/photo-1537531383496-f4749b802561?w=900&q=80" alt="Shanghai streets">
+    </div>
+    <div class="info-content">
+      <span class="section-number" style="color:var(--gold-light);">十條美食路線</span>
+      <h2>漫步城市，品味上海</h2>
+      <p>
+        美食節規劃了十條城市美食路線，各具特色：從外灘及陸家嘴一帶的高端餐飲體驗，到梧桐掩映的歷史街區裏的藝文食旅，各有風情。
+      </p>
+      <p>
+        年輕食客則更傾向於楊浦區大學路、靜安區同樂坊等新興美食地標。
+      </p>
+      <p>
+        主辦方已開發186條融合西餐元素的旅遊路線，並將酒店、博物館、演藝場所及數碼文化體驗中心串聯其中，推出季節菜單與聯合優惠活動。
+      </p>
+    </div>
+  </section>
+
+  <!-- DATA HIGHLIGHT -->
+  <section class="data-section">
+    <span class="section-number" style="color:var(--gold-light);">免簽效應</span>
+    <div class="data-grid">
+      <div class="data-item">
+        <div class="data-num">560萬+</div>
+        <div class="data-label">去年外籍旅客人次</div>
+      </div>
+      <div class="data-item">
+        <div class="data-num">~40%</div>
+        <div class="data-label">按年增長</div>
+      </div>
+      <div class="data-item">
+        <div class="data-num">329萬</div>
+        <div class="data-label">經免簽政策入境</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CNY + CLOSING -->
+  <section class="closing-section">
+    <span class="section-number">農曆新年特別企劃</span>
+    <p class="body-text" style="margin-top:1rem;">
+      農曆新年期間，美食節推出特別活動，分兩個階段進行：2月14日至23日期間，各參與餐廳推出團年飯套餐及節慶菜單；2月24日至3月3日的第二階段，則着重為返滬居民及其到訪的親友營造獨特的用餐體驗。
+    </p>
+    <p class="body-text">
+      「我們推出了兩款特別套餐，享七折優惠，包括招牌菜式及為呼應新年氣氛而設計的新元素。」Il Teatro意大利餐廳經理顧琦琦介紹道。她同時觀察到，自去年九月以來，國際旅客明顯增加，這與中國擴大免簽政策不無關係。
+    </p>
+
+    <div class="closing-divider"></div>
+
+    <span class="section-number">展望未來</span>
+    <p class="body-text" style="margin-top:1rem;">
+      美食節的野心不止於餐飲本身。活動深度融入城市旅遊線路，並在各場館方圓三公里內打造「美食+」消費集群，延伸出一場全方位的文化體驗。「我們正將美食旅遊打造成激活消費潛力、刷新城市旅遊體驗的新路徑。」上海市文化和旅遊局副局長金雷表示。
+    </p>
+    <p class="body-text">
+      對於Scarpetta Trattoria的Liu而言，這場美食節標誌着上海餐飲的真正成熟。「上海的國際餐飲水平已是全國之冠。我期望這次盛會能激勵更多餐廳和廚師，將國際餐飲推上真正的世界級水準。」
+    </p>
+    <p class="body-text">
+      Fernandez亦有同感：「上海依然是國際美食的沃土。如今的消費者期待的是真正難忘的用餐體驗。未來的成功，取決於能否在迎合本地食客不斷演進的口味的同時，保持菜品質素的穩定與餐飲底蘊的深度。」
+    </p>
+
+    <div class="closing-divider"></div>
+
+    <div class="closing-credits">
+      吳婉珍對本文亦有貢獻<br>
+      原文刊於《中國日報》2026年1月16日
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="magazine-footer">
+  <div class="footer-logo">Voyage · 旅程</div>
+  <div class="footer-note">Business &amp; First Class In-Flight Magazine</div>
+</footer>
+
+</body>
+</html>
